@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
-from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
+from forms import CreatePostForm, CreateRegistrationForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
 import os
@@ -99,7 +99,7 @@ def get_all_posts():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    form = RegisterForm()
+    form = CreateRegistrationForm()
 
     if form.validate_on_submit():
         name = form.data['name']
